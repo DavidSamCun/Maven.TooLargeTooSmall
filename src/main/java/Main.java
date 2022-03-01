@@ -43,7 +43,7 @@ public class Main {
         } else {
             numbers[0] = guess;
             for (int i = 1; guess != mystery; i++) {     //will keep running until it's true
-                if ((min < guess)&&(guess < mystery)) {
+                if ((min <= guess)&&(guess <= mystery)) {
                     verify = Main.check(numbers, guess);
                     if (verify  && 1 < i){
                         System.out.println("You already said this number! Guess again");
@@ -55,9 +55,9 @@ public class Main {
                         guess = in.nextInt();
                         tries += 1;
                     }
-                } else if ( (mystery < guess) && (guess < max)) {
+                } else if ( (mystery <= guess) && (guess <= max)) {
                     verify = Main.check(numbers, guess);
-                    if ((guess < mystery) && 1 < i) {
+                    if (verify  && 1 < i) {
                         System.out.println("You already said this number! Guess again");
                         guess = in.nextInt();
                         verify = false;
@@ -69,6 +69,10 @@ public class Main {
                         //} else if (guess == mystery){
                         //    System.out.println("You got it! The number was " + mystery + "You got it in " + i + " tries.");
                     }
+                } else {
+                    System.out.println("This value is not in range!\n" +
+                            "Guess again");
+                    guess = in.nextInt();
                 }
                 verify = false;
             }
